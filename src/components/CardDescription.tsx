@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import './CardDescription.scss'
+import { cardDetail } from '../App'
+import IndividualCard from './IndividualCard'
 
-const CardDescription = () => {
+
+
+
+
+const CardDescription = ({cardData}:{cardData:cardDetail}) => {
   return (
     <div className='cardDescriptionStyle'>
-        No card Selected
+        {cardData.title?
+        <IndividualCard cardData={cardData}/>
+        :"Select a product"}
     </div>
   )
 }

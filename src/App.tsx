@@ -4,16 +4,23 @@ import { Container } from './components/Container';
 import CardDescription from './components/CardDescription';
 
 
-
-
+export type cardDetail= {
+  title: string;
+  description: string;
+  price: number;
+  imageSource?: string; // Optional property
+};
 
 
 const App:React.FC=() => {
-  const [cardState,setCardState]=useState<any>();
+  const [cardState,setCardState]=useState<cardDetail>({title:"",description:"",price:0,imageSource:""});
+  const changeSelectedCard=(cardObj:cardDetail)=>{
+  setCardState(cardObj);
+  };
   return (
     <div className="AppStyle">
-      <Container/>
-      <CardDescription/>
+      <Container changeSelectedCard={changeSelectedCard}/>
+      <CardDescription cardData={cardState}/>
     </div>
   );
 }

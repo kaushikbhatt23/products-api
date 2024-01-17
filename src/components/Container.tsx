@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Card from './Card';
+import { cardDetail } from '../App';
 import './Container.scss'
 var async = require('async');
 
 
-// interface Props{
-//   cardState: string;
-//   setCardState: React.Dispatch<React.SetStateAction<string>>;
-// }
 
 
-export const Container:React.FC = () => {
+
+interface Props{
+  changeSelectedCard: (cardObj: cardDetail) => void
+}
+
+
+export const Container:React.FC<Props> = (props) => {
 
   const [data, setData] = useState<any>({ products: [] });
 
@@ -41,7 +44,8 @@ export const Container:React.FC = () => {
           title={item.title} 
           description={item.description} 
           price={item.price} 
-          imageSource={item.images[0]}/>
+          imageSource={item.images[0]}
+          changeSelectedCard={props.changeSelectedCard}/>
       ))}
     </div>
     </>
